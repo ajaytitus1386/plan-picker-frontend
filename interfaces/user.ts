@@ -1,7 +1,7 @@
 export interface User {
-  id: String;
-  email: String;
-  username: String;
+  id: string;
+  email: string;
+  username: string;
 }
 
 export function userFromJSON(json: any): User {
