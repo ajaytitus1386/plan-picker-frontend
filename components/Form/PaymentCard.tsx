@@ -72,7 +72,8 @@ const PaymentCard: FC<Props> = ({ plan, user, billingCycle }) => {
       billingCycle.toLowerCase(),
       startDate,
       endDate,
-      true
+      true,
+      data.subscriptionId
     );
 
     router.push("/currentPlan");
