@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
+    "@stripe/react-stripe-js": "^1.10.0",
+    "@stripe/stripe-js": "^1.35.0",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
+    "moment": "^2.29.4",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-moment": "^1.1.2",
     "react-toastify": "^9.0.8",
     "yup": "^0.32.11"
   },
