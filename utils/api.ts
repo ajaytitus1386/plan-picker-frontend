@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://richpanel-task-backend.herokuapp.com/";
 
 const AUTH_URL = `${BASE_URL}/user`;
 const PLAN_URL = `${BASE_URL}/plans`;
