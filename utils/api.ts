@@ -22,5 +22,6 @@ export const ROUTES = {
   },
   STRIPE: {
     CREATE: `${STRIPE_URL}/create`,
+    CANCEL: `${STRIPE_URL}/cancel`,
   },
 };
