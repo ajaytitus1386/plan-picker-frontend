@@ -1,5 +1,8 @@
 import axios from "axios";
-import { Subscription } from "../../interfaces/subscription";
+import {
+  Subscription,
+  subscriptionFromJSON,
+} from "../../interfaces/subscription";
 import { ROUTES } from "../../utils/api";
 
 export async function fetchSub(userId: string): Promise<Subscription[] | null> {
@@ -12,7 +15,7 @@ export async function fetchSub(userId: string): Promise<Subscription[] | null> {
       },
     });
 
-    return res.data;
+    return res.data.map((sub: any) => subscriptionFromJSON(sub));
   } catch (error) {
     return null;
   }

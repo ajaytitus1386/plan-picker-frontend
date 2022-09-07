@@ -7,7 +7,8 @@ export async function createSub(
   billingCycle: string,
   startDate: Date,
   endDate: Date,
-  isActive: boolean
+  isActive: boolean,
+  stripeSubId: string
 ) {
   try {
     const res = await axios({
@@ -20,10 +21,7 @@ export async function createSub(
         startDate,
         endDate,
         isActive,
-        // Deprecated
-        creditCardNumber: "4242-4242-4242-4242",
-        creditCardExpiry: "2/24",
-        creditCardCvv: "420",
+        stripeSubId,
       },
     });
 
