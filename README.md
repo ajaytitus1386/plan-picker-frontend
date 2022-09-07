@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<hr>
+<h1 style="text-align:center;width:100%;">Video Plan Subscription Web App</h1>
+<hr>
 
-## Getting Started
+- [:rocket: Getting Started](#rocket-getting-started)
+- [:clipboard: Main Technologies](#clipboard-main-technologies)
+- [:arrow_down: Process Flow](#arrow_down-process-flow)
+  - [1. Authentication](#1-authentication)
+  - [2. Current Subscribed Plan](#2-current-subscribed-plan)
+  - [3. Choose A Plan](#3-choose-a-plan)
+  - [4. Subscription Payment](#4-subscription-payment)
 
-First, run the development server:
+## :rocket: Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1. Clone the repository from `https://github.com/ajaytitus1386/richpanel-task-frontend` using your preferred method.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Next, navigate to the root of the project and install the dependencies:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   yarn install
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Then, run the **development server**:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   ```bash
+   yarn run dev
+   ```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) with your browser to see a development preview.
 
-To learn more about Next.js, take a look at the following resources:
+<hr>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Or just head to [https://richpanel-task-frontend-ten.vercel.app/](https://richpanel-task-frontend-ten.vercel.app/) to see the **deployed build**!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## :clipboard: Main Technologies
 
-## Deploy on Vercel
+- **Next.JS**: React Framework that supports easy page routing
+- **Formik**: Effective Form State Management library
+- **Yup**: Form Validation Schema
+- **Axios**: HTTP Client for Node.JS
+- **Toastify**: React library to implement simple toast messages to give user feedback
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## :arrow_down: Process Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 1. Authentication
+
+On Loading, up the web app will redirect to the login page if no token was found in the local storage. You can either sign up for a new account or log into an existing account. The navbar on the top has a button that can be used to logout or login depending on the user state.
+
+useContext Hooks are used to manage the Auth State of user variables such as the user token, details and their current subscription.
+
+Once authenticated, the token is used to fetch the User Details and will redirect the user to their current plan page. Similarily, if the token exists in localStorage, all this is done automatically
+
+### 2. Current Subscribed Plan
+
+This displays the current subscription and its state as well as an option to choose a new plan if no subscription exists yet.
+
+On an Active Plan, the cancel button will cancel the subscription in both the database and on the STRIPE API
+
+### 3. Choose A Plan
+
+Presents a view of all the plans fetched from the database. The billing cycle toggle allows you to switch between Monthly and Yearly billing.
+
+### 4. Subscription Payment
+
+Once a plan is selected, the next step is to collect the User's Credit Card Info and make a request to the STRIPE API and the backend. If the Payment goes well, the user will be redirected to their Current Subscribed Plan page
