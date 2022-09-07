@@ -3,6 +3,10 @@ import { Plan } from "../../interfaces/plan";
 import Moment from "react-moment";
 import { Subscription } from "../../interfaces/subscription";
 import ActiveTag from "./ActiveTag";
+import { cancelStripeSub } from "../../services/subscriptions/cancelStripeSub";
+import { cancelSub } from "../../services/subscriptions/cancelSub";
+import { AuthContextType, useAuthContext } from "../../context/AuthContext";
+import { useRouter } from "next/router";
 
 interface Props {
   subscription: Subscription;
@@ -10,6 +14,18 @@ interface Props {
 }
 
 const PlanCard: FC<Props> = ({ subscription, plan }) => {
+  const { setSub } = useAuthContext() as AuthContextType;
+  const router = useRouter();
+
+  async function cancelSubGlobal() {
+    if (!subscription.stripeSubId) return;
+    const delSub = await cancelStripeSub(subscription.stripeSubId);
+    if (!delSub) return;
+    const data = await cancelSub(subscription.id);
+    if (!data) return;
+    setSub(null);
+  }
+
   return (
     <div className="rounded-xl bg-white p-4 flex flex-col gap-y-4 w-1/3 h-fit justify-center items-start">
       <div className="flex w-full justify-between items-center">
@@ -24,7 +40,12 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           )}
         </div>
         {subscription.isActive ? (
-          <button className="text-lucidean font-semibold">Cancel</button>
+          <button
+            onClick={() => cancelSubGlobal()}
+            className="text-lucidean font-semibold"
+          >
+            Cancel
+          </button>
         ) : null}
       </div>
       <div className="flex flex-col">
@@ -43,7 +64,12 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           {subscription.billingCycle === "yearly" ? "/yr" : "/mt"}
         </text>
       </div>
-      <button className="text-lucidean font-medium px-4 py-2 border-lucidean border bg-white rounded">
+      <button
+        onClick={() => {
+          router.push("plans");
+        }}
+        className="text-lucidean font-medium px-4 py-2 border-lucidean border bg-white rounded"
+      >
         {subscription.isActive ? "Change" : "Choose"}
         {" Plan"}
       </button>
