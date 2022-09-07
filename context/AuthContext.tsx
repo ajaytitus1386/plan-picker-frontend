@@ -17,13 +17,14 @@ export type AuthContextType = {
     password: string
   ) => Promise<string | null>;
   logout: () => void;
+  setSub: React.Dispatch<React.SetStateAction<Subscription | null>>;
 };
 
 export const AuthContext = React.createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
-
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
   const router = useRouter();
@@ -33,6 +34,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const token = localStorage.getItem("token");
       if (token === undefined || token === null) return;
       setToken(token);
+    }
+    async function fetchUserByToken() {
+      if (!token) return;
       const user = await verifyJWT(token);
       if (user === null) return;
       setUser(user);
@@ -40,7 +44,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     verifyInitialToken();
-  }, []);
+    fetchUserByToken();
+  }, [token]);
 
   const login = async (email: string, password: string) => {
     const data = await loginUser(email, password);
@@ -65,18 +70,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
+    setUser(null);
     router.push("/login");
   };
 
   return (
     <AuthContext.Provider
       value={{
-        subscription: null,
+        subscription: subscription,
         user: user,
         token: token,
         login,
         signUp,
         logout,
+        setSub: setSubscription,
       }}
     >
       {children}
