@@ -18,18 +18,17 @@ const LayoutWrapper: FC<Props> = ({ children }) => {
 
   return (
     <div className="w-full h-full">
-      <div className="w-full h-20 p-4 bg-white flex flex-row justify-end items-center">
-        {
-          <button
-            onClick={() => {
-              if (hasUser) logout();
-              else push("/login");
-            }}
-            className="p-2 border text-black rounded-md border-gray-500 border-opacity-50"
-          >
-            {hasUser ? "Logout" : "Log In"}
-          </button>
-        }
+      <div className="w-full h-20 py-4 px-8 bg-white flex flex-row justify-between items-center">
+        <h1 className="text-lucidean text-xl font-bold">Streaming Plans</h1>
+        <button
+          onClick={() => {
+            if (hasUser) logout();
+            else push("/login");
+          }}
+          className="p-2 border text-black rounded-md border-gray-500 border-opacity-50"
+        >
+          {hasUser ? "Logout" : "Log In"}
+        </button>
       </div>
       {children}
     </div>

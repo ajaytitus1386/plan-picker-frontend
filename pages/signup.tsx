@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Formik, Form } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { boolean, object, string } from "yup";
 import AuthCard from "../components/Auth/AuthCard";
 import { AuthContextType, useAuthContext } from "../context/AuthContext";
@@ -45,7 +45,8 @@ const SignUpPage: NextPage = () => {
               const res = await signUp(
                 values.username,
                 values.email,
-                values.password
+                values.password,
+                values.rememberMe
               );
               if (res === null || res === undefined) {
                 toast.error("Unable to Register with these credentials");

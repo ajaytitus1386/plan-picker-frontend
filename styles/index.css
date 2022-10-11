@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .bottomArrow:before {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    border-right: 0.8rem solid transparent;
+    border-top: 0.4rem solid theme("colors.lucidean");
+    border-left: 0.8rem solid transparent;
+  }
+
+  .tooltip {
+    @apply invisible absolute;
+  }
+
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
+  }
+}

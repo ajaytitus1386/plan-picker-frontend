@@ -10,11 +10,16 @@ export type AuthContextType = {
   token: string | null;
   user: User | null;
   subscription: Subscription | null;
-  login: (email: string, password: string) => Promise<string | null>;
+  login: (
+    email: string,
+    password: string,
+    rememberMe: boolean
+  ) => Promise<string | null>;
   signUp: (
     username: string,
     email: string,
-    password: string
+    password: string,
+    rememberMe: boolean
   ) => Promise<string | null>;
   logout: () => void;
   setSub: React.Dispatch<React.SetStateAction<Subscription | null>>;
@@ -47,20 +52,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     fetchUserByToken();
   }, [token]);
 
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+    rememberMe: boolean
+  ) => {
     const data = await loginUser(email, password);
     if (data.token !== undefined || data.token !== null) {
-      localStorage.setItem("token", data.token);
+      if (rememberMe) localStorage.setItem("token", data.token);
       setToken(data.token);
       return data.token;
     }
     return null;
   };
 
-  const signUp = async (username: string, email: string, password: string) => {
+  const signUp = async (
+    username: string,
+    email: string,
+    password: string,
+    rememberMe: boolean
+  ) => {
     const data = await signUpUser(email, username, password);
     if (data.token !== undefined || data.token !== null) {
-      localStorage.setItem("token", data.token);
+      if (rememberMe) localStorage.setItem("token", data.token);
       setToken(data.token);
       return data.token;
     }

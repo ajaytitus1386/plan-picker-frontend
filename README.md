@@ -3,6 +3,7 @@
 <hr>
 
 - [:rocket: Getting Started](#rocket-getting-started)
+  - [Or just head to https://richpanel-task-frontend-ten.vercel.app/ to see the **deployed build**!](#or-just-head-to-httpsrichpanel-task-frontend-tenvercelapp-to-see-the-deployed-build)
 - [:clipboard: Main Technologies](#clipboard-main-technologies)
 - [:arrow_down: Process Flow](#arrow_down-process-flow)
   - [1. Authentication](#1-authentication)
@@ -30,7 +31,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see a d
 
 <hr>
 
-Or just head to [https://richpanel-task-frontend-ten.vercel.app/](https://richpanel-task-frontend-ten.vercel.app/) to see the **deployed build**!
+Check out the backend implementation at [https://github.com/ajaytitus1386/richpanel-task-backend](https://github.com/ajaytitus1386/richpanel-task-backend)
+
+### Or just head to [https://richpanel-task-frontend-ten.vercel.app/](https://richpanel-task-frontend-ten.vercel.app/) to see the **deployed build**!
 
 ## :clipboard: Main Technologies
 
