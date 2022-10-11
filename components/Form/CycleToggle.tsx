@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 interface Props {
   isMonthly: boolean;
@@ -7,30 +7,22 @@ interface Props {
 
 const CycleToggle: FC<Props> = ({ isMonthly, setIsMonthly }) => {
   return (
-    <button
-      onClick={() => {
-        setIsMonthly(!isMonthly);
-      }}
-      className="relative rounded-full bg-lucidean p-4 w-fit gap-x-4 flex justify-between transition-all duration-200"
-    >
-      {/* <div className="absolute right-4 top-2.5 bg-white w-11 h-8 rounded-full"></div> */}
+    <div className="relative w-40 h-12 mt-5 overflow-hidden rounded-full bg-lucidean hover:brightness-125 transition-all">
+      <input
+        type="checkbox"
+        className="relative w-full h-full p-0 m-0 opacity-0 cursor-pointer z-[3]"
+        onClick={() => setIsMonthly(!isMonthly)}
+      />
+      {/* Knobs */}
       <div
         className={[
-          "p-1 rounded-full ",
-          isMonthly ? "text-lucidean bg-white" : "text-white",
+          "z-[2] absolute top-1 w-20 h-8 text-center text-lucidean text-sm font-bold m-1 px-1 py-2 rounded-xl transition-all ",
+          isMonthly ? "left-2 bg-white" : "left-16 bg-white",
         ].join(" ")}
       >
-        Monthly
+        <span>{isMonthly ? "Monthly" : "Yearly"}</span>
       </div>
-      <div
-        className={[
-          "p-1 rounded-full ",
-          !isMonthly ? "text-lucidean bg-white" : "text-white",
-        ].join(" ")}
-      >
-        Yearly
-      </div>
-    </button>
+    </div>
   );
 };
 
