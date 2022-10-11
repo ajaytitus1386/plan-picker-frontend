@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Plan } from "../../interfaces/plan";
 import Moment from "react-moment";
 import { Subscription } from "../../interfaces/subscription";
@@ -7,6 +7,7 @@ import { cancelStripeSub } from "../../services/subscriptions/cancelStripeSub";
 import { cancelSub } from "../../services/subscriptions/cancelSub";
 import { AuthContextType, useAuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/router";
+import CancelModal from "./CancelModal";
 
 interface Props {
   subscription: Subscription;
@@ -17,13 +18,23 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
   const { setSub } = useAuthContext() as AuthContextType;
   const router = useRouter();
 
+  const [cancelModalOpen, setCancelModalOpen] = useState(false);
+
+  const openCancelModal = () => {
+    setCancelModalOpen(true);
+  };
+
+  const closeCancelModal = () => {
+    setCancelModalOpen(false);
+  };
+
   async function cancelSubGlobal() {
     if (!subscription.stripeSubId) return;
     const delSub = await cancelStripeSub(subscription.stripeSubId);
     if (!delSub) return;
     const data = await cancelSub(subscription.id);
     if (!data) return;
-    setSub(null);
+    router.reload();
   }
 
   return (
@@ -40,12 +51,21 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           )}
         </div>
         {subscription.isActive ? (
-          <button
-            onClick={() => cancelSubGlobal()}
-            className="text-lucidean font-semibold"
-          >
-            Cancel
-          </button>
+          <>
+            <button
+              onClick={() => openCancelModal()}
+              className="text-lucidean font-semibold"
+              data-modal-toggle="popup-modal"
+              type="button"
+            >
+              Cancel
+            </button>
+            <CancelModal
+              isVisible={cancelModalOpen}
+              closeMethod={closeCancelModal}
+              confirmAction={cancelSubGlobal}
+            />
+          </>
         ) : null}
       </div>
       <div className="flex flex-col">

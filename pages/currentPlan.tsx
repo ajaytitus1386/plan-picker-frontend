@@ -18,7 +18,7 @@ const CurrentPlanPage: NextPage = () => {
       if (!user) return;
       const subs = await fetchSub(user.id);
       if (!subs || subs.length == 0) return;
-      const latestSub = subs[0];
+      const latestSub = subs[subs.length - 1];
       setSub(latestSub);
       const plan = await fetchPlanById(latestSub.planId.toString());
       if (!plan) return;
