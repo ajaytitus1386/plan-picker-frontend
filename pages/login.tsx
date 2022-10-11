@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { object, string, boolean } from "yup";
 import { toast } from "react-toastify";
 import AuthCard from "../components/Auth/AuthCard";
@@ -41,7 +41,11 @@ const LoginPage: NextPage = () => {
           initialValues={initialValues}
           onSubmit={async (values) => {
             try {
-              const res = await login(values.email, values.password);
+              const res = await login(
+                values.email,
+                values.password,
+                values.rememberMe
+              );
               if (res === null || res === undefined) {
                 toast.error("Unable to Login with these credentials");
                 return null;
