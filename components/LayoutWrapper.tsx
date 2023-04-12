@@ -17,15 +17,15 @@ const LayoutWrapper: FC<Props> = ({ children }) => {
   }, [user]);
 
   return (
-    <div className="w-full h-full">
-      <div className="w-full h-20 py-4 px-8 bg-white flex flex-row justify-between items-center">
-        <h1 className="text-lucidean text-xl font-bold">Streaming Plans</h1>
+    <div className="w-full h-full bg-gradient-to-r from-lucidean to-cordovan animate-gradient-animate bg-animated">
+      <div className="w-full h-20 py-4 px-8 bg-opacity-30 bg-white backdrop-blur-lg flex flex-row justify-between items-center">
+        <h1 className="text-white text-xl font-bold">Streaming Plans</h1>
         <button
           onClick={() => {
             if (hasUser) logout();
             else push("/login");
           }}
-          className="p-2 border text-black rounded-md border-gray-500 border-opacity-50"
+          className="p-2 border text-white rounded-md border-white border-opacity-50"
         >
           {hasUser ? "Logout" : "Log In"}
         </button>
