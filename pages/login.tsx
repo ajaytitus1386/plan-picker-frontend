@@ -35,7 +35,7 @@ const LoginPage: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-full">
       <AuthCard title={"Login to your account"}>
         <Formik
           initialValues={initialValues}

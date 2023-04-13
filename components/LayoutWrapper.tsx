@@ -18,20 +18,22 @@ const LayoutWrapper: FC<Props> = ({ children }) => {
   }, [user]);
 
   return (
-    <div className="w-full h-full bg-gradient-to-r from-lucidean to-cordovan animate-gradient-animate bg-animated">
-      <GlassCard className="w-full h-20 py-4 px-8 flex flex-row justify-between items-center rounded-none">
-        <h1 className="text-white text-xl font-bold">Streaming Plans</h1>
-        <button
-          onClick={() => {
-            if (hasUser) logout();
-            else push("/login");
-          }}
-          className="p-2 border text-white rounded-md border-white border-opacity-50"
-        >
-          {hasUser ? "Logout" : "Log In"}
-        </button>
-      </GlassCard>
-      {children}
+    <div className="w-full h-screen bg-gradient-to-r from-lucidean to-cordovan animate-gradient-animate bg-animated">
+      <div className="fixed w-full">
+        <GlassCard className="w-full h-20 py-4 px-8 flex flex-row justify-between items-center rounded-none">
+          <h1 className="text-white text-xl font-bold">Streaming Plans</h1>
+          <button
+            onClick={() => {
+              if (hasUser) logout();
+              else push("/login");
+            }}
+            className="p-2 border text-white rounded-md border-white border-opacity-50"
+          >
+            {hasUser ? "Logout" : "Log In"}
+          </button>
+        </GlassCard>
+      </div>
+      <div className="h-full">{children}</div>
     </div>
   );
 };
