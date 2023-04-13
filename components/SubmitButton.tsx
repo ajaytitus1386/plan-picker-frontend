@@ -20,7 +20,7 @@ const SubmitButton: FC<Props> = ({ onClick, label }) => {
     <div className="w-full ">
       <button
         type="submit"
-        className="bg-lucidean text-lg transition-all duration-300 bg-opacity-100 py-4 w-full hover:bg-opacity-70 rounded-md"
+        className="bg-lucidean text-seasalt text-lg transition-all duration-300 bg-opacity-100 py-4 w-full hover:bg-opacity-70 rounded-md"
         onClick={() => clickSubmit()}
       >
         {isLoading ? <BeatLoader color="white" loading={isLoading} /> : label}

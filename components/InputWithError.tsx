@@ -20,12 +20,12 @@ const InputWithError: FC<Props> = ({
 }) => {
   return (
     <div>
-      <h1 className="text-black mb-1 font-semibold">{placeholder}</h1>
+      <h1 className="text-seasalt mb-1 font-semibold">{placeholder}</h1>
       <Field
         render={({ field }: { field: any }) => (
           <input
             className={[
-              "rounded-md p-4 w-full bg-inherit border-gray-400 border-opacity-50 border-2 text-gray-600 text-base",
+              "rounded-md p-4 w-full bg-inherit border-gray-400 border-opacity-50 border-2 text-seasalt text-base",
               inputClassName,
             ].join(" ")}
             placeholder={placeholder}

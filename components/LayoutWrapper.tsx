@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { AuthContextType, useAuthContext } from "../context/AuthContext";
+import GlassCard from "./GlassCard";
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +19,7 @@ const LayoutWrapper: FC<Props> = ({ children }) => {
 
   return (
     <div className="w-full h-full bg-gradient-to-r from-lucidean to-cordovan animate-gradient-animate bg-animated">
-      <div className="w-full h-20 py-4 px-8 bg-opacity-30 bg-white backdrop-blur-lg flex flex-row justify-between items-center">
+      <GlassCard className="w-full h-20 py-4 px-8 flex flex-row justify-between items-center rounded-none">
         <h1 className="text-white text-xl font-bold">Streaming Plans</h1>
         <button
           onClick={() => {
@@ -29,7 +30,7 @@ const LayoutWrapper: FC<Props> = ({ children }) => {
         >
           {hasUser ? "Logout" : "Log In"}
         </button>
-      </div>
+      </GlassCard>
       {children}
     </div>
   );

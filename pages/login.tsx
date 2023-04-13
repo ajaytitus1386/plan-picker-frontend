@@ -73,10 +73,10 @@ const LoginPage: NextPage = () => {
                   type="password"
                   required
                 />
-                <RememberMe name="rememberMe" />
+                {/* <RememberMe name="rememberMe" /> */}
                 <SubmitButton label="Login" onClick={() => {}} />
                 <div className="text-lucidean flex gap-x-1 items-center justify-center">
-                  <div className="text-black">New to This App?</div>
+                  <div className="text-seasalt">New to This App?</div>
                   <Link href={"/signup"}>Sign Up</Link>
                 </div>
               </div>
