@@ -6,6 +6,7 @@ import { AuthContextType, useAuthContext } from "../context/AuthContext";
 import { Plan } from "../interfaces/plan";
 import { fetchPlanById } from "../services/plans/fetchPlanById";
 import { fetchSub } from "../services/subscriptions/fetchSub";
+import GlassCard from "../components/GlassCard";
 
 const CurrentPlanPage: NextPage = () => {
   const { subscription, setSub, user } = useAuthContext() as AuthContextType;
@@ -28,11 +29,11 @@ const CurrentPlanPage: NextPage = () => {
   }, [setSub, user]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-full">
       {subscription && currentPlan ? (
         <PlanCard plan={currentPlan} subscription={subscription} />
       ) : (
-        <div className="w-fit bg-white rounded-lg p-8 gap-y-4 flex flex-col items-center justify-center">
+        <GlassCard className="w-fit bg-white rounded-lg p-8 gap-y-4 flex flex-col items-center justify-center">
           <h1 className="text-black text-2xl font-bold text-center">
             Welcome to your account!
           </h1>
@@ -43,11 +44,11 @@ const CurrentPlanPage: NextPage = () => {
             onClick={() => {
               router.push("/plans");
             }}
-            className="text-lucidean font-medium px-4 py-2 border-lucidean border bg-white rounded"
+            className="text-lucidean font-medium px-4 py-2 bg-white rounded"
           >
             {"Choose A Plan"}
           </button>
-        </div>
+        </GlassCard>
       )}
     </div>
   );
