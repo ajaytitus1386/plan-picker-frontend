@@ -10,12 +10,15 @@ interface Props {
 const LayoutWrapper: FC<Props> = ({ children }) => {
   const { user, logout, token, subscription } =
     useAuthContext() as AuthContextType;
-  const { push } = useRouter();
+  const { push, pathname } = useRouter();
   const [hasUser, setHasUser] = useState(false);
   useEffect(() => {
     if (user) setHasUser(true);
-    else setHasUser(false);
-  }, [user]);
+    else {
+      setHasUser(false);
+      if (pathname !== "/login") push("/login");
+    }
+  }, [pathname, push, user]);
 
   return (
     <div className="w-full h-screen bg-gradient-to-r from-lucidean to-cordovan animate-gradient-animate bg-animated">

@@ -47,10 +47,10 @@ const LoginPage: NextPage = () => {
                 values.rememberMe
               );
               if (res === null || res === undefined) {
-                toast.error("Unable to Login with these credentials");
+                toast?.error("Unable to Login with these credentials");
                 return null;
               }
-              toast.success("Logged In!");
+              toast?.success("Logged In!");
               push("/currentPlan");
             } catch (error) {
               return error;
@@ -73,7 +73,7 @@ const LoginPage: NextPage = () => {
                   type="password"
                   required
                 />
-                {/* <RememberMe name="rememberMe" /> */}
+                <RememberMe name="rememberMe" />
                 <SubmitButton label="Login" onClick={() => {}} />
                 <div className="text-lucidean flex gap-x-1 items-center justify-center">
                   <div className="text-seasalt">New to This App?</div>
