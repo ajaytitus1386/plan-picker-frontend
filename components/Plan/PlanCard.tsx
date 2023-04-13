@@ -5,9 +5,9 @@ import { Subscription } from "../../interfaces/subscription";
 import ActiveTag from "./ActiveTag";
 import { cancelStripeSub } from "../../services/subscriptions/cancelStripeSub";
 import { cancelSub } from "../../services/subscriptions/cancelSub";
-import { AuthContextType, useAuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import CancelModal from "./CancelModal";
+import GlassCard from "../GlassCard";
 
 interface Props {
   subscription: Subscription;
@@ -15,7 +15,6 @@ interface Props {
 }
 
 const PlanCard: FC<Props> = ({ subscription, plan }) => {
-  const { setSub } = useAuthContext() as AuthContextType;
   const router = useRouter();
 
   const [cancelModalOpen, setCancelModalOpen] = useState(false);
@@ -38,7 +37,7 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
   }
 
   return (
-    <div className="rounded-xl bg-white p-4 flex flex-col gap-y-4 w-1/3 h-fit justify-center items-start">
+    <GlassCard className="p-4 flex flex-col gap-y-4 w-1/3 h-fit justify-center items-start">
       <div className="flex w-full justify-between items-center">
         <div className="flex gap-x-1">
           <h1 className="text-black text-2xl font-semibold">
@@ -69,8 +68,8 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
         ) : null}
       </div>
       <div className="flex flex-col">
-        <h2 className="text-lg text-gray-700 font-semibold">{plan.planName}</h2>
-        <h3 className="text-base text-gray-500">{plan.devices}</h3>
+        <h2 className="text-lg text-black font-semibold">{plan.planName}</h2>
+        <h3 className="text-base text-black">{plan.devices}</h3>
       </div>
 
       <div>
@@ -86,14 +85,16 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
       </div>
       <button
         onClick={() => {
+          if (subscription.isActive) openCancelModal();
           router.push("plans");
         }}
-        className="text-lucidean font-medium px-4 py-2 border-lucidean border bg-white rounded"
+        className="text-lucidean font-medium px-4 py-2 bg-seasalt bg-opacity-40 rounded"
       >
         {subscription.isActive ? "Change" : "Choose"}
+
         {" Plan"}
       </button>
-      <div className="w-full bg-gray-100 rounded-lg p-2 text-black font-normal">
+      <div className="w-full bg-seasalt bg-opacity-40 rounded-lg p-2 text-black font-normal">
         {subscription.isActive ? (
           <p>
             Your subscription has started on{" "}
@@ -122,7 +123,7 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           </p>
         )}
       </div>
-    </div>
+    </GlassCard>
   );
 };
 
