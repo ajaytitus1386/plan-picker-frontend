@@ -1,4 +1,4 @@
-const BASE_URL = "https://richpanel-task-backend.herokuapp.com";
+const BASE_URL = "https://plan-picker-backend.vercel.app";
 
 const AUTH_URL = `${BASE_URL}/user`;
 const PLAN_URL = `${BASE_URL}/plans`;
