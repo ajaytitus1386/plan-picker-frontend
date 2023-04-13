@@ -8,6 +8,7 @@ import SubmitButton from "../components/SubmitButton";
 import { AuthContextType, useAuthContext } from "../context/AuthContext";
 import { Plan, planFromJSON } from "../interfaces/plan";
 import { fetchAllPlans } from "../services/plans/fetchAllPlans";
+import GlassCard from "../components/GlassCard";
 
 const PlansPage: NextPage = () => {
   const { user } = useAuthContext() as AuthContextType;
@@ -31,10 +32,10 @@ const PlansPage: NextPage = () => {
   }, [plans]);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center h-full">
       {/* Step 1 - Choose A Plan */}
       {step === 1 && (
-        <div className="w-1/2 p-4 m-4 flex flex-col rounded-lg bg-white">
+        <GlassCard className="w-1/2 p-4 m-4 flex flex-col rounded-lg bg-white">
           {plans.length !== 0 && (
             <div className="grid grid-flow-col">
               <div className="col-span-2 flex flex-col text-black">
@@ -81,7 +82,7 @@ const PlansPage: NextPage = () => {
               }}
             />
           </div>
-        </div>
+        </GlassCard>
       )}
       {/* Step 2 - Add Credit Card Info */}
       {step === 2 && user && (
