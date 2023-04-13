@@ -53,7 +53,7 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           <>
             <button
               onClick={() => openCancelModal()}
-              className="text-lucidean font-semibold"
+              className="text-lucidean font-semibold bg-seasalt bg-opacity-0 hover:bg-opacity-70 transition-all duration-300 p-2 rounded-lg"
               data-modal-toggle="popup-modal"
               type="button"
             >
@@ -88,7 +88,7 @@ const PlanCard: FC<Props> = ({ subscription, plan }) => {
           if (subscription.isActive) openCancelModal();
           router.push("plans");
         }}
-        className="text-lucidean font-medium px-4 py-2 bg-seasalt bg-opacity-40 rounded"
+        className="text-lucidean font-medium px-4 py-2 bg-seasalt bg-opacity-40 hover:bg-opacity-70 transition-all duration-300 rounded"
       >
         {subscription.isActive ? "Change" : "Choose"}
 
