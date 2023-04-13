@@ -44,7 +44,7 @@ const GlassCard: FC<Props> = ({ children, className = "" }) => {
     <div
       ref={cardRef}
       className={[
-        "bg-seasalt bg-opacity-40 backdrop-blur-md rounded-lg p-8 m-4 relative overflow-hidden",
+        "bg-seasalt bg-opacity-40 backdrop-blur-md rounded-lg relative overflow-hidden",
         className,
       ].join(" ")}
     >
